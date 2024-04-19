@@ -40,6 +40,22 @@ class HomePage extends StatelessWidget {
               height: 300,
             ),
           ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: MyPersistentHeaderDelegate(
+              child: Container(
+                color: Colors.blueGrey,
+                child: Center(
+                  child: Text(
+                    'SliverPersistentHeader',
+                    style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  ),
+                ),
+              ),
+              minHeight: 50,
+              maxHeight: 500,
+            ),
+          ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 100,
@@ -70,5 +86,35 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/* 추상클래스 이기 때문에 상속해야 한다.*/
+class MyPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  MyPersistentHeaderDelegate({
+    required this.child,
+    required this.minHeight,
+    required this.maxHeight,
+  });
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
+  }
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
   }
 }
