@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             title: Text("AppBar"),
-            pinned: false,
-            snap: true /* snap과 floating은 세트*/,
-            floating: true,
+            pinned: true,
+            // snap: true /* snap과 floating은 세트*/,
+            // floating: true,
             expandedHeight: 250,
             flexibleSpace: Container(
               color: Colors.green,
@@ -44,12 +44,12 @@ class HomePage extends StatelessWidget {
             child: SizedBox(
               height: 100,
               child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.horizontal /* 가로로 스크롤 가능*/,
                 itemCount: 30 /* 빌드할 자식 위젯을 30개로*/,
                 itemBuilder: (context, index) /* 콜백 함수, 각 index에 자식 위젯 빌드 */ {
                   return Container /* 각 index에 높이 50, 색상 파란색 Container 반환 */ (
                     width: 20,
-                    color: Colors.yellow[((index % 9) + 1) * 100],
+                    color: Colors.yellow[index % 10 * 100],
                   );
                 },
               ),
@@ -61,8 +61,8 @@ class HomePage extends StatelessWidget {
               childCount: 20 /* 빌드할 자식 위젯을 20개로*/,
               (context, index) /* 콜백 함수, 각 index에 자식 위젯 빌드 */ {
                 return Container /* 각 index에 높이 50, 색상 파란색 Container 반환 */ (
-                  height: 20,
-                  color: Colors.blue[((index % 9) + 1) * 100],
+                  height: 50,
+                  color: Colors.blue[(index % 10) * 100],
                 );
               },
             ),
