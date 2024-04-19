@@ -40,16 +40,19 @@ class HomePage extends StatelessWidget {
               height: 300,
             ),
           ),
-          SliverList(
-            /* 높이를 동적 계산*/
-            delegate: SliverChildBuilderDelegate(
-              childCount: 20 /* 빌드할 자식 위젯을 20개로*/,
-              (context, index) /* 콜백 함수, 각 index에 자식 위젯 빌드 */ {
-                return Container /* 각 index에 높이 50, 색상 파란색 Container 반환 */ (
-                  height: 20,
-                  color: Colors.yellow[((index % 9) + 1) * 100],
-                );
-              },
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 30 /* 빌드할 자식 위젯을 30개로*/,
+                itemBuilder: (context, index) /* 콜백 함수, 각 index에 자식 위젯 빌드 */ {
+                  return Container /* 각 index에 높이 50, 색상 파란색 Container 반환 */ (
+                    width: 20,
+                    color: Colors.yellow[((index % 9) + 1) * 100],
+                  );
+                },
+              ),
             ),
           ),
           SliverList(
